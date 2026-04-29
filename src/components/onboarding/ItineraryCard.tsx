@@ -29,9 +29,10 @@ const CARD_ACCENTS = [
 interface ItineraryCardProps {
   itinerary: Itinerary
   index: number
+  onSelect?: () => void
 }
 
-export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
+export function ItineraryCard({ itinerary, index, onSelect }: ItineraryCardProps) {
   const [expandedDay, setExpandedDay] = useState<number | null>(null)
   const [isHovered, setIsHovered] = useState(false)
   const accent = CARD_ACCENTS[index % CARD_ACCENTS.length]
@@ -252,6 +253,7 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
         <div className="px-5 pb-5 pt-1">
           <motion.button
             type="button"
+            onClick={onSelect}
             className="w-full py-2.5 rounded-[8px] font-medium text-[14px] flex items-center justify-center gap-1.5"
             style={{ backgroundColor: accent.dot, color: 'white' }}
             whileHover="hover"

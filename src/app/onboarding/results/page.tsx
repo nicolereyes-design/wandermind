@@ -90,7 +90,12 @@ export default function ResultsPage() {
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
           {itineraries.map((itin, i) => (
-            <ItineraryCard key={i} itinerary={itin} index={i} />
+            <ItineraryCard
+              key={i}
+              itinerary={itin}
+              index={i}
+              onSelect={() => router.push('/onboarding/signup')}
+            />
           ))}
         </div>
 

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WanderMind — Vos itinéraires personnalisés</title>
+  <style>
+    :root {
+      --color-primary: #2d39f7;
+      --color-primary-hover: #050d85;
+      --color-secondary: #ffb200;
+      --color-success: #00c378;
+      --color-error: #f84848;
+      --color-grey-100: #f5f5f7;
+      --color-grey-200: #e3e4ea;
+      --color-grey-500: #848a97;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #fafafa;
+      color: #0a0a0a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-grey-200);
+      padding: 12px 24px;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0a0a0a;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--color-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .logo-name { font-weight: 600; font-size: 15px; letter-spacing: -0.3px; }
+    .btn-restart {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--color-grey-200);
+      background: white;
+      color: var(--color-grey-500);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-restart:hover { border-color: var(--color-grey-500); color: #0a0a0a; }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* HERO */
+    .hero { text-align: center; margin-bottom: 48px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .badge.mock { background: var(--color-secondary); color: #0a0a0a; }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 span { color: var(--color-primary); }
+    .hero p { font-size: 17px; color: var(--color-grey-500); max-width: 440px; margin: 0 auto; line-height: 1.6; }
+
+    /* CARDS GRID */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 900px) { .cards-grid { grid-template-columns: 1fr; } }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      border: 1.5px solid var(--color-grey-200);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeUp 0.45s ease both;
+    }
+    .card:nth-child(1) { animation-delay: 0s; }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.2s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card header band */
+    .card-header {
+      padding: 20px 20px 16px;
+    }
+    .card-header-meta {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .destination-badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      color: white;
+    }
+    .duration-badge {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: white;
+      color: var(--color-grey-500);
+      border: 1px solid var(--color-grey-200);
+      white-space: nowrap;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #0a0a0a;
+    }
+
+    /* Card body */
+    .card-body { padding: 16px 20px; flex: 1; display: flex; flex-direction: column; gap: 14px; }
+    .card-summary { font-size: 14px; color: var(--color-grey-500); line-height: 1.65; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--color-grey-100);
+      color: var(--color-grey-500);
+    }
+
+    /* Accordion days */
+    .days-section { display: flex; flex-direction: column; gap: 6px; }
+    .days-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      margin-bottom: 2px;
+    }
+    .day-item {
+      border: 1px solid var(--color-grey-200);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .day-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: white;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+      gap: 10px;
+    }
+    .day-toggle:hover { background: var(--color-grey-100); }
+    .day-toggle.open { background: var(--card-accent-bg, #eef0fe); }
+    .day-toggle-left { display: flex; align-items: center; gap: 10px; }
+    .day-number {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .day-theme { font-size: 13px; font-weight: 500; color: #0a0a0a; }
+    .day-chevron {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+      color: var(--color-grey-500);
+    }
+    .day-chevron.open { transform: rotate(90deg); }
+
+    .day-activities {
+      display: none;
+      padding: 10px 14px 14px;
+      border-top: 1px solid var(--color-grey-200);
+      flex-direction: column;
+      gap: 10px;
+    }
+    .day-activities.open { display: flex; }
+    .activity { display: flex; gap: 10px; }
+    .activity-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+    .activity-info {}
+    .activity-name-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .activity-name { font-size: 13px; font-weight: 600; color: #0a0a0a; }
+    .activity-time { font-size: 11px; color: var(--color-grey-500); }
+    .activity-desc { font-size: 12px; color: var(--color-grey-500); line-height: 1.5; margin-top: 2px; }
+
+    /* Card footer */
+    .card-footer { padding: 12px 20px 20px; }
+    .btn-choose {
+      width: 100%;
+      padding: 11px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-choose:hover { opacity: 0.88; }
+
+    /* CTA BLOCK */
+    .cta-block {
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      background: var(--color-primary);
+      color: white;
+    }
+    .cta-block h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .cta-block p { font-size: 15px; color: rgba(255,255,255,0.72); margin-bottom: 24px; line-height: 1.6; }
+    .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-primary {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      background: white;
+      color: var(--color-primary);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .btn-cta-primary:hover { opacity: 0.9; }
+    .btn-cta-secondary {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      background: transparent;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-cta-secondary:hover { background: rgba(255,255,255,0.1); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-mark">W</div>
+      <span class="logo-name">WanderMind</span>
+    </a>
+    <button class="btn-restart">← Recommencer</button>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge mock">✦ Aperçu — données d'exemple</div>
+    <h1>Vos itinéraires <span>personnalisés</span></h1>
+    <p>3 voyages uniques, conçus selon votre profil voyageur.</p>
+  </div>
+
+  <!-- Cards -->
+  <div class="cards-grid" id="cards"></div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Envie de sauvegarder vos itinéraires ?</h2>
+    <p>Créez un compte pour les retrouver, les partager et les modifier.</p>
+    <div class="cta-buttons">
+      <button class="btn-cta-primary">Créer un compte gratuit</button>
+      <button class="btn-cta-secondary">Générer d'autres itinéraires</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  const ACCENTS = [
+    { bg: '#eef0fe', dot: '#2d39f7' },
+    { bg: '#fff8e6', dot: '#ffb200' },
+    { bg: '#e6f9f3', dot: '#00c378' },
+  ]
+
+  const ACTIVITY_ICONS = {
+    transport: '✈️', food: '🍽️', activity: '🎯', accommodation: '🏨', free: '🌟'
+  }
+
+  const ITINERARIES = [
+    {
+      title: '7 jours au Japon — culture & gastronomie',
+      destination: 'Tokyo & Kyoto',
+      summary: 'Une immersion totale entre modernité tokyoïte et traditions millénaires de Kyoto. Temples, marchés de rue, ryokans et gastronomie étoilée.',
+      tags: ['Culture', 'Gastronomie', 'Temples', 'Budget moyen'],
+      days: [
+        {
+          day: 1, theme: 'Arrivée à Tokyo — premiers pas',
+          activities: [
+            { time: '14h00', name: 'Arrivée à Narita / Haneda', description: 'Navette express vers le centre-ville', type: 'transport' },
+            { time: '17h00', name: 'Check-in hôtel Shinjuku', description: 'Boutique hôtel design dans le quartier animé', type: 'accommodation' },
+            { time: '19h30', name: 'Izakaya Omoide Yokocho', description: 'Dîner dans les ruelles des "Alées de la Nostalgie"', type: 'food' },
+          ]
+        },
+        {
+          day: 2, theme: 'Shibuya & Harajuku',
+          activities: [
+            { time: '09h00', name: 'Sanctuaire Meiji-jingū', description: 'Forêt sacrée au cœur de la ville', type: 'activity' },
+            { time: '12h00', name: 'Takeshita Street', description: 'Street food et mode alternative', type: 'activity' },
+            { time: '18h00', name: 'Carrefour de Shibuya', description: "L'intersection la plus fréquentée du monde", type: 'activity' },
+            { time: '20h00', name: 'Yakitori sous les rails', description: 'Brochettes et bière Sapporo', type: 'food' },
+          ]
+        },
+        {
+          day: 3, theme: 'Voyage vers Kyoto',
+          activities: [
+            { time: '08h00', name: 'Shinkansen Tokyo → Kyoto', description: '2h15 de trajet à 320 km/h', type: 'transport' },
+            { time: '11h00', name: 'Fushimi Inari', description: 'Milliers de torii vermillon sur la colline', type: 'activity' },
+            { time: '15h00', name: 'Quartier de Gion', description: 'Maisons de thé et geishas traditionnelles', type: 'activity' },
+            { time: '19h00', name: 'Kaiseki dinner', description: 'Gastronomie japonaise raffinée en 8 services', type: 'food' },
+          ]
+        },
+      ]
+    },
+    {
+      title: '7 jours au Portugal — soleil & authenticité',
+      destination: 'Lisbonne & Porto',
+      summary: "Entre les azulejos de Lisbonne et les caves à vins de Porto, découvrez un pays où le temps s'étire doucement au rythme du fado.",
+      tags: ['Gastronomie', 'Vie urbaine', 'Architecture', 'Économique'],
+      days: [
+        {
+          day: 1, theme: 'Arrivée à Lisbonne',
+          activities: [
+            { time: '13h00', name: "Arrivée à l'aéroport Humberto Delgado", description: 'Métro ligne rouge vers le centre', type: 'transport' },
+            { time: '16h00', name: "Quartier de l'Alfama", description: 'Dédale de ruelles, miradouros et fado', type: 'activity' },
+            { time: '20h00', name: 'Pastel de nata chez Pastéis de Belém', description: "L'original depuis 1837", type: 'food' },
+          ]
+        },
+        {
+          day: 2, theme: 'Belém & Baixa',
+          activities: [
+            { time: '09h00', name: 'Tour de Belém', description: "Symbole de l'ère des découvertes", type: 'activity' },
+            { time: '11h00', name: 'Monastère des Jerónimos', description: "Chef-d'œuvre manuélin classé UNESCO", type: 'activity' },
+            { time: '14h00', name: 'LX Factory', description: 'Marché créatif dans une ancienne usine', type: 'activity' },
+            { time: '19h30', name: 'Marisqueira', description: 'Fruits de mer frais et vinho verde', type: 'food' },
+          ]
+        },
+        {
+          day: 3, theme: 'Train vers Porto',
+          activities: [
+            { time: '08h30', name: 'Train Alfa Pendular vers Porto', description: '3h de trajet côtier', type: 'transport' },
+            { time: '12h00', name: 'Livraria Lello', description: 'La plus belle librairie du monde', type: 'activity' },
+            { time: '15h00', name: 'Cave Sandeman à Vila Nova de Gaia', description: 'Dégustation de Porto tawny 20 ans', type: 'activity' },
+            { time: '20h00', name: 'Francesinha au café Santiago', description: 'Le sandwich emblématique de Porto', type: 'food' },
+          ]
+        },
+      ]
+    },
+    {
+      title: '7 jours au Mexique — nature & aventure',
+      destination: 'Oaxaca & Côte Pacifique',
+      summary: 'Des marchés colorés de Oaxaca aux vagues de Puerto Escondido, un voyage entre jungle, océan et cuisine indigène classée au patrimoine UNESCO.',
+      tags: ['Aventure', 'Nature', 'Gastronomie', 'Plage'],
+      days: [
+        {
+          day: 1, theme: 'Arrivée à Oaxaca',
+          activities: [
+            { time: '15h00', name: 'Arrivée aéroport Xoxocotlán', description: 'Taxi collectif vers le zócalo', type: 'transport' },
+            { time: '17h30', name: 'Marché 20 de Noviembre', description: 'Tlayudas, chapulines et mole negro', type: 'food' },
+            { time: '20h00', name: 'Mezcalería en el centro', description: 'Dégustation de mezcal artisanal', type: 'activity' },
+          ]
+        },
+        {
+          day: 2, theme: 'Monte Albán & artisanat',
+          activities: [
+            { time: '08h00', name: 'Site archéologique de Monte Albán', description: 'Cité zapotèque dominant la vallée', type: 'activity' },
+            { time: '13h00', name: 'Pueblo de Teotitlán del Valle', description: 'Tissage traditionnel zapotèque', type: 'activity' },
+            { time: '19h00', name: 'Clase de cocina oaxaqueña', description: 'Préparation du mole en 7 ingrédients', type: 'food' },
+          ]
+        },
+        {
+          day: 3, theme: 'Route vers la côte',
+          activities: [
+            { time: '07h00', name: 'Navette Oaxaca → Puerto Escondido', description: '5h de route sinueuse à travers la Sierra', type: 'transport' },
+            { time: '13h00', name: 'Playa Zicatela', description: 'La "Pipeline mexicaine" — vagues légendaires', type: 'activity' },
+            { time: '18h00', name: 'Coucher de soleil sur Playa Carrizalillo', description: 'Crique protégée aux eaux turquoise', type: 'free' },
+            { time: '20h00', name: "Ceviche au bord de l'eau", description: 'Ceviche mixto et agua de Jamaica', type: 'food' },
+          ]
+        },
+      ]
+    }
+  ]
+
+  function buildCard(itin, index) {
+    const acc = ACCENTS[index]
+
+    const tagsHTML = itin.tags.map(t => `<span class="tag">${t}</span>`).join('')
+
+    const daysHTML = itin.days.map(day => {
+      const activitiesHTML = day.activities.map(a => `
+        <div class="activity">
+          <span class="activity-icon">${ACTIVITY_ICONS[a.type] || '📍'}</span>
+          <div class="activity-info">
+            <div class="activity-name-row">
+              <span class="activity-name">${a.name}</span>
+              <span class="activity-time">${a.time}</span>
+            </div>
+            <div class="activity-desc">${a.description}</div>
+          </div>
+        </div>
+      `).join('')
+
+      return `
+        <div class="day-item">
+          <button class="day-toggle" onclick="toggleDay(this)" style="--card-accent-bg: ${acc.bg}">
+            <div class="day-toggle-left">
+              <span class="day-number" style="background:${acc.dot}">${day.day}</span>
+              <span class="day-theme">${day.theme}</span>
+            </div>
+            <svg class="day-chevron" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 3l4 4-4 4"/>
+            </svg>
+          </button>
+          <div class="day-activities">${activitiesHTML}</div>
+        </div>
+      `
+    }).join('')
+
+    return `
+      <div class="card">
+        <div class="card-header" style="background:${acc.bg}">
+          <div class="card-header-meta">
+            <span class="destination-badge" style="background:${acc.dot}">${itin.destination}</span>
+            <span class="duration-badge">${itin.days.length}j</span>
+          </div>
+          <div class="card-title">${itin.title}</div>
+        </div>
+        <div class="card-body">
+          <p class="card-summary">${itin.summary}</p>
+          <div class="tags">${tagsHTML}</div>
+          <div class="days-section">
+            <div class="days-label">Programme jour par jour</div>
+            ${daysHTML}
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-choose" style="background:${acc.dot}">Choisir cet itinéraire →</button>
+        </div>
+      </div>
+    `
+  }
+
+  function toggleDay(btn) {
+    const activities = btn.nextElementSibling
+    const chevron = btn.querySelector('.day-chevron')
+    const isOpen = activities.classList.contains('open')
+    activities.classList.toggle('open', !isOpen)
+    chevron.classList.toggle('open', !isOpen)
+    btn.classList.toggle('open', !isOpen)
+  }
+
+  // Render cards
+  const grid = document.getElementById('cards')
+  grid.innerHTML = ITINERARIES.map((itin, i) => buildCard(itin, i)).join('')
+</script>
+</body>
+</html>

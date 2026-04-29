@@ -21,7 +21,7 @@ const LODGING_OPTIONS: Array<{ value: LodgingPreference; label: string; descript
 
 export default function StepLodging() {
   const router = useRouter()
-  const { profile, updateProfile, setProfileId } = useOnboardingStore()
+  const { profile, updateProfile, setProfileId, stepDirection } = useOnboardingStore()
   const [wishlistInput, setWishlistInput] = useState('')
   const [visitedInput, setVisitedInput] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -86,9 +86,9 @@ export default function StepLodging() {
   return (
     <OnboardingShell currentStep={5} onBack={() => router.push('/onboarding/step/4')}>
       <motion.div
-        initial={{ opacity: 0, x: 24 }}
+        initial={{ opacity: 0, x: stepDirection * 32 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
         <h1 className="font-bold mb-2" style={{ fontSize: '32px', lineHeight: 'var(--leading-snug)', letterSpacing: '-0.015em' }}>
           Hébergement &amp; destinations

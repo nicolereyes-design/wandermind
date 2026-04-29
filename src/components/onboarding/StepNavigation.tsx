@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useOnboardingStore } from '@/store/onboardingStore'
 
 interface StepNavigationProps {
   onNext: () => void
@@ -13,11 +14,13 @@ export function StepNavigation({
   canNext,
   nextLabel = 'Continuer',
 }: StepNavigationProps) {
+  const { setStepDirection } = useOnboardingStore()
+
   return (
     <div className="mt-8">
       <motion.button
         type="button"
-        onClick={onNext}
+        onClick={() => { setStepDirection(1); onNext() }}
         disabled={!canNext}
         whileHover={canNext ? { y: -1, boxShadow: '0 6px 20px rgba(45,57,247,0.25)' } : {}}
         whileTap={canNext ? { scale: 0.97 } : {}}

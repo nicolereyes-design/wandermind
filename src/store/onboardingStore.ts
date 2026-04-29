@@ -8,11 +8,13 @@ import type { Itinerary } from '@/types/itinerary'
 interface OnboardingState {
   _hasHydrated: boolean
   currentStep: number
+  stepDirection: 1 | -1
   profile: Partial<TravelerProfile>
   generatedItineraries: Itinerary[]
   profileId: string | null
   setHasHydrated: (v: boolean) => void
   setStep: (step: number) => void
+  setStepDirection: (direction: 1 | -1) => void
   nextStep: () => void
   prevStep: () => void
   updateProfile: (partial: Partial<TravelerProfile>) => void
@@ -32,11 +34,13 @@ export const useOnboardingStore = create<OnboardingState>()(
     (set) => ({
       _hasHydrated: false,
       currentStep: 0,
+      stepDirection: 1 as 1 | -1,
       profile: initialProfile,
       generatedItineraries: [],
       profileId: null,
       setHasHydrated: (v) => set({ _hasHydrated: v }),
       setStep: (step) => set({ currentStep: step }),
+      setStepDirection: (direction) => set({ stepDirection: direction }),
       nextStep: () => set((state) => ({ currentStep: state.currentStep + 1 })),
       prevStep: () => set((state) => ({ currentStep: Math.max(0, state.currentStep - 1) })),
       updateProfile: (partial) =>

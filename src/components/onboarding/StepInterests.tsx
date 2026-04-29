@@ -25,7 +25,7 @@ const INTEREST_OPTIONS: Array<{ value: Interest; label: string; icon: React.Reac
 
 export default function StepInterests() {
   const router = useRouter()
-  const { profile, updateProfile } = useOnboardingStore()
+  const { profile, updateProfile, stepDirection } = useOnboardingStore()
 
   const selectedInterests = profile.interests ?? []
 
@@ -40,9 +40,9 @@ export default function StepInterests() {
   return (
     <OnboardingShell currentStep={3} onBack={() => router.push('/onboarding/step/2')}>
       <motion.div
-        initial={{ opacity: 0, x: 24 }}
+        initial={{ opacity: 0, x: stepDirection * 32 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
         <h1 className="font-bold mb-2" style={{ fontSize: '32px', lineHeight: 'var(--leading-snug)', letterSpacing: '-0.015em' }}>
           Qu&apos;est-ce qui vous passionne ?

@@ -9,7 +9,7 @@ import { ShimmerText } from '@/components/ui/ShimmerText'
 
 export default function OnboardingIntroPage() {
   const router = useRouter()
-  const { updateProfile, reset } = useOnboardingStore()
+  const { updateProfile, reset, setStepDirection } = useOnboardingStore()
 
   useEffect(() => {
     let sessionId = localStorage.getItem('wm-session-id')
@@ -81,7 +81,7 @@ export default function OnboardingIntroPage() {
               style={{ display: 'block' }}
             >
               <button
-                onClick={() => router.push('/onboarding/step/1')}
+                onClick={() => { setStepDirection(1); router.push('/onboarding/step/1') }}
                 className="w-full py-4 px-8 rounded-[8px] font-medium text-[18px] text-white transition-all duration-200 hover:opacity-90"
                 style={{ backgroundColor: 'var(--color-primary)' }}
               >

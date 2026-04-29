@@ -59,7 +59,7 @@ function Stepper({
 
 export default function StepDuration() {
   const router = useRouter()
-  const { profile, updateProfile } = useOnboardingStore()
+  const { profile, updateProfile, stepDirection } = useOnboardingStore()
 
   const duration = profile.trip_duration_days ?? 7
   const companions = profile.companion_count ?? 1
@@ -67,9 +67,9 @@ export default function StepDuration() {
   return (
     <OnboardingShell currentStep={4} onBack={() => router.push('/onboarding/step/3')}>
       <motion.div
-        initial={{ opacity: 0, x: 24 }}
+        initial={{ opacity: 0, x: stepDirection * 32 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
         <h1 className="font-bold mb-2" style={{ fontSize: '32px', lineHeight: 'var(--leading-snug)', letterSpacing: '-0.015em' }}>
           Durée et compagnons

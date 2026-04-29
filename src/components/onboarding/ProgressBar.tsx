@@ -42,9 +42,11 @@ export function ProgressBar({ currentStep, totalSteps = 5, onBack }: ProgressBar
 
         return (
           <div key={i} className="flex items-center gap-2 flex-1">
-            <div
+            <motion.div
+              animate={isActive ? { scale: [1, 1.22, 1] } : { scale: 1 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className={cn(
-                'w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium transition-all duration-300 flex-shrink-0',
+                'w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0',
                 isCompleted && 'text-white',
                 isActive && 'text-white',
                 !isCompleted && !isActive && 'text-[var(--color-grey-500)]'
@@ -55,6 +57,7 @@ export function ProgressBar({ currentStep, totalSteps = 5, onBack }: ProgressBar
                   : isActive
                   ? 'var(--color-primary)'
                   : 'var(--color-grey-200)',
+                transition: 'background-color 0.3s ease',
               }}
             >
               {isCompleted ? (
@@ -64,7 +67,7 @@ export function ProgressBar({ currentStep, totalSteps = 5, onBack }: ProgressBar
               ) : (
                 stepNumber
               )}
-            </div>
+            </motion.div>
             {i < totalSteps - 1 && (
               <div
                 className="h-[2px] flex-1 transition-all duration-300"

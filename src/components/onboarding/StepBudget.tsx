@@ -18,14 +18,14 @@ const BUDGET_OPTIONS: Array<{ value: BudgetTier; label: string; description: str
 
 export default function StepBudget() {
   const router = useRouter()
-  const { profile, updateProfile } = useOnboardingStore()
+  const { profile, updateProfile, stepDirection } = useOnboardingStore()
 
   return (
     <OnboardingShell currentStep={2} onBack={() => router.push('/onboarding/step/1')}>
       <motion.div
-        initial={{ opacity: 0, x: 24 }}
+        initial={{ opacity: 0, x: stepDirection * 32 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
         <h1 className="font-bold mb-2" style={{ fontSize: '32px', lineHeight: 'var(--leading-snug)', letterSpacing: '-0.015em' }}>
           Quel est votre budget ?

@@ -22,7 +22,7 @@
 
 @font-face {
   font-family: 'SegmentAlt';
-  src: url('/fonts/SegmentAlt-Bold.woff2') format('woff2');
+  src: url('/fonts/SegmentAlt-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -30,7 +30,7 @@
 
 @font-face {
   font-family: 'SegmentAlt';
-  src: url('/fonts/SegmentAlt-SemiBold.woff2') format('woff2');
+  src: url('/fonts/SegmentAlt-SemiBold.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -38,7 +38,7 @@
 
 @font-face {
   font-family: 'SegmentAlt';
-  src: url('/fonts/SegmentAlt-Medium.woff2') format('woff2');
+  src: url('/fonts/SegmentAlt-Medium.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -46,7 +46,7 @@
 
 @font-face {
   font-family: 'SegmentAlt';
-  src: url('/fonts/SegmentAlt-Regular.woff2') format('woff2');
+  src: url('/fonts/SegmentAlt-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

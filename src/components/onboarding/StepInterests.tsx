@@ -1,24 +1,26 @@
 'use client'
 
+import React from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { Mountain, Utensils, Landmark, Leaf, Waves, Building2, Sparkles, Camera, Music, ShoppingBag } from 'lucide-react'
 import { useOnboardingStore } from '@/store/onboardingStore'
 import { OnboardingShell } from './OnboardingShell'
 import { OptionTile } from './OptionTile'
 import { StepNavigation } from './StepNavigation'
 import type { Interest } from '@/types/profile'
 
-const INTEREST_OPTIONS: Array<{ value: Interest; label: string; icon: string }> = [
-  { value: 'adventure', label: 'Aventure', icon: '🏔️' },
-  { value: 'gastronomy', label: 'Gastronomie', icon: '🍽️' },
-  { value: 'culture', label: 'Culture', icon: '🏛️' },
-  { value: 'nature', label: 'Nature', icon: '🌿' },
-  { value: 'beach', label: 'Plage', icon: '🏖️' },
-  { value: 'city', label: 'Vie urbaine', icon: '🏙️' },
-  { value: 'wellness', label: 'Bien-être', icon: '🧘' },
-  { value: 'photography', label: 'Photographie', icon: '📸' },
-  { value: 'nightlife', label: 'Vie nocturne', icon: '🎶' },
-  { value: 'shopping', label: 'Shopping', icon: '🛍️' },
+const INTEREST_OPTIONS: Array<{ value: Interest; label: string; icon: React.ReactNode }> = [
+  { value: 'adventure', label: 'Aventure', icon: <Mountain size={22} /> },
+  { value: 'gastronomy', label: 'Gastronomie', icon: <Utensils size={22} /> },
+  { value: 'culture', label: 'Culture', icon: <Landmark size={22} /> },
+  { value: 'nature', label: 'Nature', icon: <Leaf size={22} /> },
+  { value: 'beach', label: 'Plage', icon: <Waves size={22} /> },
+  { value: 'city', label: 'Vie urbaine', icon: <Building2 size={22} /> },
+  { value: 'wellness', label: 'Bien-être', icon: <Sparkles size={22} /> },
+  { value: 'photography', label: 'Photographie', icon: <Camera size={22} /> },
+  { value: 'nightlife', label: 'Vie nocturne', icon: <Music size={22} /> },
+  { value: 'shopping', label: 'Shopping', icon: <ShoppingBag size={22} /> },
 ]
 
 export default function StepInterests() {

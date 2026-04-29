@@ -1,18 +1,20 @@
 'use client'
 
+import React from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { Luggage, Heart, Users, Users2 } from 'lucide-react'
 import { useOnboardingStore } from '@/store/onboardingStore'
 import { OnboardingShell } from './OnboardingShell'
 import { OptionTile } from './OptionTile'
 import { StepNavigation } from './StepNavigation'
 import type { TravelStyle } from '@/types/profile'
 
-const STYLE_OPTIONS: Array<{ value: TravelStyle; label: string; description: string; icon: string }> = [
-  { value: 'solo', label: 'Solo', description: 'Liberté totale, votre rythme', icon: '🧳' },
-  { value: 'couple', label: 'En couple', description: 'Moments romantiques et complices', icon: '💑' },
-  { value: 'family', label: 'En famille', description: 'Souvenirs pour tous les âges', icon: '👨‍👩‍👧‍👦' },
-  { value: 'friends', label: 'Entre amis', description: "L'aventure à plusieurs", icon: '🤝' },
+const STYLE_OPTIONS: Array<{ value: TravelStyle; label: string; description: string; icon: React.ReactNode }> = [
+  { value: 'solo', label: 'Solo', description: 'Liberté totale, votre rythme', icon: <Luggage size={22} /> },
+  { value: 'couple', label: 'En couple', description: 'Moments romantiques et complices', icon: <Heart size={22} /> },
+  { value: 'family', label: 'En famille', description: 'Souvenirs pour tous les âges', icon: <Users size={22} /> },
+  { value: 'friends', label: 'Entre amis', description: "L'aventure à plusieurs", icon: <Users2 size={22} /> },
 ]
 
 export default function StepTravelStyle() {

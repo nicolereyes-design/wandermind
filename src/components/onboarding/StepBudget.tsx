@@ -1,17 +1,19 @@
 'use client'
 
+import React from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { Wallet, Plane, Gem } from 'lucide-react'
 import { useOnboardingStore } from '@/store/onboardingStore'
 import { OnboardingShell } from './OnboardingShell'
 import { OptionTile } from './OptionTile'
 import { StepNavigation } from './StepNavigation'
 import type { BudgetTier } from '@/types/profile'
 
-const BUDGET_OPTIONS: Array<{ value: BudgetTier; label: string; description: string; icon: string }> = [
-  { value: 'budget', label: 'Économique', description: 'Auberges, transports locaux, street food', icon: '💰' },
-  { value: 'comfort', label: 'Confort', description: 'Hôtels 3-4★, restaurants variés', icon: '✈️' },
-  { value: 'luxury', label: 'Luxe', description: 'Hôtels 5★, expériences exclusives', icon: '💎' },
+const BUDGET_OPTIONS: Array<{ value: BudgetTier; label: string; description: string; icon: React.ReactNode }> = [
+  { value: 'budget', label: 'Économique', description: 'Auberges, transports locaux, street food', icon: <Wallet size={22} /> },
+  { value: 'comfort', label: 'Confort', description: 'Hôtels 3-4★, restaurants variés', icon: <Plane size={22} /> },
+  { value: 'luxury', label: 'Luxe', description: 'Hôtels 5★, expériences exclusives', icon: <Gem size={22} /> },
 ]
 
 export default function StepBudget() {

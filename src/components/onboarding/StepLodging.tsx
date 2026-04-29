@@ -1,21 +1,22 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { Home, Store, Building, TreePalm, Key, Tent } from 'lucide-react'
 import { useOnboardingStore } from '@/store/onboardingStore'
 import { OnboardingShell } from './OnboardingShell'
 import { OptionTile } from './OptionTile'
 import { StepNavigation } from './StepNavigation'
 import type { LodgingPreference } from '@/types/profile'
 
-const LODGING_OPTIONS: Array<{ value: LodgingPreference; label: string; description: string; icon: string }> = [
-  { value: 'hostel', label: 'Auberge', description: 'Social et économique', icon: '🏠' },
-  { value: 'boutique_hotel', label: 'Boutique hôtel', description: 'Charme et authenticité', icon: '🏡' },
-  { value: 'hotel', label: 'Hôtel classique', description: 'Confort et services', icon: '🏨' },
-  { value: 'resort', label: 'Resort', description: 'Tout inclus, détente', icon: '🌴' },
-  { value: 'vacation_rental', label: 'Location privée', description: 'Airbnb / appartement', icon: '🔑' },
-  { value: 'camping', label: 'Camping / Glamping', description: 'Nature et aventure', icon: '⛺' },
+const LODGING_OPTIONS: Array<{ value: LodgingPreference; label: string; description: string; icon: React.ReactNode }> = [
+  { value: 'hostel', label: 'Auberge', description: 'Social et économique', icon: <Home size={22} /> },
+  { value: 'boutique_hotel', label: 'Boutique hôtel', description: 'Charme et authenticité', icon: <Store size={22} /> },
+  { value: 'hotel', label: 'Hôtel classique', description: 'Confort et services', icon: <Building size={22} /> },
+  { value: 'resort', label: 'Resort', description: 'Tout inclus, détente', icon: <TreePalm size={22} /> },
+  { value: 'vacation_rental', label: 'Location privée', description: 'Airbnb / appartement', icon: <Key size={22} /> },
+  { value: 'camping', label: 'Camping / Glamping', description: 'Nature et aventure', icon: <Tent size={22} /> },
 ]
 
 export default function StepLodging() {

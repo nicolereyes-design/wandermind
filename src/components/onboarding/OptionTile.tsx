@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 interface OptionTileProps {
   label: string
   description?: string
-  icon?: string
+  icon?: React.ReactNode
   selected: boolean
   onClick: () => void
   disabled?: boolean
@@ -40,8 +40,9 @@ export function OptionTile({
     >
       {icon && (
         <motion.span
-          className="text-2xl flex-shrink-0 w-8 text-center"
-          whileHover={{ scale: 1.25, rotate: 8 }}
+          className="flex-shrink-0 w-8 flex items-center justify-center"
+          style={{ color: selected ? 'var(--color-primary)' : 'var(--color-grey-500)' }}
+          whileHover={{ scale: 1.2, rotate: 6 }}
           whileTap={{ scale: 0.85 }}
           transition={{ type: 'spring', stiffness: 400, damping: 15 }}
         >{icon}</motion.span>

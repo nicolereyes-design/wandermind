@@ -1,15 +1,16 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Plane, Utensils, Target, Building, Star } from 'lucide-react'
 import type { Itinerary, ActivityType } from '@/types/itinerary'
 
-const ACTIVITY_ICONS: Record<ActivityType, string> = {
-  transport: '✈️',
-  food: '🍽️',
-  activity: '🎯',
-  accommodation: '🏨',
-  free: '🌟',
+const ACTIVITY_ICONS: Record<ActivityType, React.ReactNode> = {
+  transport: <Plane size={16} />,
+  food: <Utensils size={16} />,
+  activity: <Target size={16} />,
+  accommodation: <Building size={16} />,
+  free: <Star size={16} />,
 }
 
 const CARD_ACCENTS = [
@@ -144,7 +145,7 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
                   >
                     {day.activities.map((activity, i) => (
                       <div key={i} className="flex gap-2.5">
-                        <span className="text-base flex-shrink-0 mt-0.5 leading-none">
+                        <span className="flex-shrink-0 mt-0.5 leading-none flex items-center" style={{ color: 'var(--color-grey-500)' }}>
                           {ACTIVITY_ICONS[activity.type]}
                         </span>
                         <div className="min-w-0">

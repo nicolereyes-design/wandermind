@@ -16,7 +16,7 @@ export default function SignupPage() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundColor: '#ffffff' }}
+      style={{ backgroundColor: 'var(--color-white)' }}
     >
       {/* Back link */}
       <div className="px-6 pt-6">
@@ -47,7 +47,7 @@ export default function SignupPage() {
           <div className="flex justify-center mb-5">
             <span
               className="inline-flex items-center px-3 py-1 rounded-full text-[12px] font-semibold"
-              style={{ backgroundColor: '#ffb200', color: '#0a0a0a' }}
+              style={{ backgroundColor: '#ffb200', color: 'var(--color-ink)' }}
             >
               Accès gratuit
             </span>
@@ -56,7 +56,7 @@ export default function SignupPage() {
           {/* Heading */}
           <h1
             className="text-center font-bold mb-2"
-            style={{ fontSize: '28px', color: '#0a0a0a', letterSpacing: '-0.5px' }}
+            style={{ fontSize: '28px', color: 'var(--color-ink)', letterSpacing: '-0.5px' }}
           >
             Créez votre compte
           </h1>
@@ -78,10 +78,10 @@ export default function SignupPage() {
             style={{
               height: '48px',
               borderRadius: '10px',
-              backgroundColor: '#ffffff',
+              backgroundColor: 'var(--color-white)',
               border: '1px solid var(--color-grey-200)',
               fontSize: '15px',
-              color: '#0a0a0a',
+              color: 'var(--color-ink)',
               cursor: 'pointer',
             }}
           >
@@ -103,10 +103,10 @@ export default function SignupPage() {
             style={{
               height: '48px',
               borderRadius: '10px',
-              backgroundColor: '#0a0a0a',
+              backgroundColor: 'var(--color-ink)',
               border: 'none',
               fontSize: '15px',
-              color: '#ffffff',
+              color: 'var(--color-white)',
               cursor: 'pointer',
             }}
           >
@@ -138,8 +138,8 @@ export default function SignupPage() {
               border: '1px solid var(--color-grey-200)',
               padding: '0 16px',
               fontSize: '15px',
-              color: '#0a0a0a',
-              backgroundColor: '#ffffff',
+              color: 'var(--color-ink)',
+              backgroundColor: 'var(--color-white)',
             }}
             onFocus={(e) => {
               e.currentTarget.style.borderColor = 'var(--color-primary)'
@@ -161,7 +161,7 @@ export default function SignupPage() {
               backgroundColor: 'var(--color-primary)',
               border: 'none',
               fontSize: '15px',
-              color: '#ffffff',
+              color: 'var(--color-white)',
               cursor: 'pointer',
             }}
           >

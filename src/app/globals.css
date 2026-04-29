@@ -12,6 +12,10 @@
     --color-grey-200: #e3e4ea;
     --color-grey-500: #848a97;
     --color-disabled: #a6a6a6;
+    --color-ink: #0a0a0a;
+    --color-surface: #fafafa;
+    --color-white: #ffffff;
+    --color-dark-bg: #0a0a14;
     --font-sans: 'SegmentAlt', system-ui, sans-serif;
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -58,7 +62,7 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: #ffffff;
-  color: #0a0a0a;
+  background-color: var(--color-white);
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
 }

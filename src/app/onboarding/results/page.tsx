@@ -27,7 +27,7 @@ export default function ResultsPage() {
   }, [_hasHydrated, generatedItineraries])
 
   return (
-    <div className="min-h-screen pb-20" style={{ backgroundColor: '#fafafa' }}>
+    <div className="min-h-screen pb-20" style={{ backgroundColor: 'var(--color-surface)' }}>
       <header
         className="sticky top-0 z-10 px-4 py-3 flex items-center justify-between"
         style={{ backgroundColor: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--color-grey-200)' }}
@@ -63,7 +63,7 @@ export default function ResultsPage() {
             className="inline-flex items-center gap-2 text-[12px] font-medium px-3 py-1.5 rounded-full mb-6"
             style={{
               backgroundColor: isMock ? 'var(--color-secondary)' : 'rgba(0,195,120,0.12)',
-              color: isMock ? '#0a0a0a' : 'var(--color-success)',
+              color: isMock ? 'var(--color-ink)' : 'var(--color-success)',
               border: isMock ? 'none' : '1px solid rgba(0,195,120,0.25)',
             }}
           >

@@ -104,7 +104,7 @@ function AccordionDay({ day }: { day: typeof DAYS[0] }) {
         <div className="flex-1">
           <span
             className="font-semibold"
-            style={{ fontSize: '15px', color: '#0a0a0a' }}
+            style={{ fontSize: '15px', color: 'var(--color-ink)' }}
           >
             Jour {day.num} — {day.theme}
           </span>
@@ -149,7 +149,7 @@ export default function ItineraryPage() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className="min-h-screen"
-      style={{ backgroundColor: '#ffffff', color: '#0a0a0a' }}
+      style={{ backgroundColor: 'var(--color-white)', color: 'var(--color-ink)' }}
     >
       {/* Header */}
       <header
@@ -200,12 +200,12 @@ export default function ItineraryPage() {
               className="flex-shrink-0 flex flex-col items-center justify-center px-5 py-3 rounded-[12px]"
               style={{
                 border: '1px solid var(--color-grey-200)',
-                backgroundColor: '#fafafa',
+                backgroundColor: 'var(--color-surface)',
                 minWidth: '120px',
               }}
             >
               <span style={{ fontSize: '11px', color: 'var(--color-grey-500)', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Budget</span>
-              <span style={{ fontSize: '22px', fontWeight: 700, color: '#0a0a0a', marginTop: '2px' }}>~150€</span>
+              <span style={{ fontSize: '22px', fontWeight: 700, color: 'var(--color-ink)', marginTop: '2px' }}>~150€</span>
               <span style={{ fontSize: '12px', color: 'var(--color-grey-500)' }}>/ jour</span>
             </div>
           </div>
@@ -321,7 +321,7 @@ export default function ItineraryPage() {
                     textAnchor="middle"
                     fontSize={13}
                     fontWeight={600}
-                    fill="#0a0a0a"
+                    fill="var(--color-ink)"
                     fontFamily="system-ui, -apple-system, sans-serif"
                   >
                     {city.name}
@@ -394,7 +394,7 @@ export default function ItineraryPage() {
               fontSize: '15px',
               backgroundColor: 'var(--color-primary)',
               border: 'none',
-              color: '#ffffff',
+              color: 'var(--color-white)',
               cursor: 'pointer',
             }}
           >

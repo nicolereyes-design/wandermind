@@ -37,7 +37,7 @@ function Stepper({
           type="button"
           onClick={() => onChange(Math.max(min, value - 1))}
           disabled={value <= min}
-          className="w-9 h-9 rounded-full border-[1.5px] flex items-center justify-center text-lg font-medium transition-all disabled:opacity-30"
+          className="w-11 h-11 rounded-full border-[1.5px] flex items-center justify-center text-lg font-medium transition-all disabled:opacity-30"
           style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }}
         >
           −
@@ -47,7 +47,7 @@ function Stepper({
           type="button"
           onClick={() => onChange(Math.min(max, value + 1))}
           disabled={value >= max}
-          className="w-9 h-9 rounded-full flex items-center justify-center text-lg font-medium text-white transition-all disabled:opacity-30"
+          className="w-11 h-11 rounded-full flex items-center justify-center text-lg font-medium text-white transition-all disabled:opacity-30"
           style={{ backgroundColor: 'var(--color-primary)' }}
         >
           +

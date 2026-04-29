@@ -20,7 +20,7 @@ export function ProgressBar({ currentStep, totalSteps = 5, onBack }: ProgressBar
         whileHover={onBack ? { scale: 1.08 } : {}}
         whileTap={onBack ? { scale: 0.92 } : {}}
         transition={{ duration: 0.12 }}
-        className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-opacity"
+        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-opacity"
         style={{
           border: '1.5px solid var(--color-grey-200)',
           color: 'var(--color-grey-500)',

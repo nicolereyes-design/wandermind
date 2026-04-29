@@ -62,7 +62,7 @@ export default function LoadingPage() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4"
-      style={{ background: '#0a0a14', position: 'relative' }}
+      style={{ background: 'var(--color-dark-bg)', position: 'relative' }}
     >
       <div className="text-center max-w-[400px]">
         {/* Wandering path SVG — animated stroke draw */}

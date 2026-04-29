@@ -4,6 +4,9 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'WanderMind — Planification de voyages IA',
   description: 'Découvrez 3 itinéraires personnalisés basés sur votre profil voyageur',
+  icons: {
+    icon: '/icon.svg',
+  },
 }
 
 export default function RootLayout({

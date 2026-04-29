@@ -9,10 +9,10 @@ import { generateItineraries } from '@/lib/ai/generate'
 import { ShimmerText } from '@/components/ui/ShimmerText'
 
 const MESSAGES = [
-  'Analyse de votre profil voyageur...',
-  'Recherche des meilleures destinations...',
-  'Création de vos itinéraires sur mesure...',
-  'Finalisation des recommandations...',
+  'Cartographie de votre âme de voyageur...',
+  'Consultation de 147 chroniques de destinations...',
+  'Assemblage de votre itinéraire sur mesure...',
+  'Dernière touche — vos rêves prennent forme...',
 ]
 
 export default function LoadingPage() {

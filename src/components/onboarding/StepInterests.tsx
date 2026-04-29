@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Mountain, Utensils, Landmark, Leaf, Waves, Building2, Sparkles, Camera, Music, ShoppingBag } from 'lucide-react'
 import { useOnboardingStore } from '@/store/onboardingStore'
 import { OnboardingShell } from './OnboardingShell'
@@ -63,11 +63,23 @@ export default function StepInterests() {
           ))}
         </div>
 
-        {selectedInterests.length > 0 && (
-          <p className="mt-4 text-sm" style={{ color: 'var(--color-grey-500)' }}>
-            {selectedInterests.length} sélectionné{selectedInterests.length > 1 ? 's' : ''}
-          </p>
-        )}
+        <div className="mt-4 h-5">
+          <AnimatePresence mode="wait">
+            {selectedInterests.length > 0 && (
+              <motion.p
+                key={selectedInterests.length}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="text-sm"
+                style={{ color: 'var(--color-grey-500)' }}
+              >
+                {selectedInterests.length} sélectionné{selectedInterests.length > 1 ? 's' : ''}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
 
         <StepNavigation
           canNext={selectedInterests.length > 0}

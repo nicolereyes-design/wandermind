@@ -34,12 +34,14 @@ export default function OnboardingIntroPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          <div
+          <motion.div
             className="inline-block text-xs font-medium px-3 py-1.5 rounded-full mb-6"
             style={{ backgroundColor: 'var(--color-secondary)', color: '#0a0a0a' }}
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
           >
             IA multi-provider
-          </div>
+          </motion.div>
 
           <h1
             className="font-bold mb-4"

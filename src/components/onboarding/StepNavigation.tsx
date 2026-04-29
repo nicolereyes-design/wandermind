@@ -25,7 +25,7 @@ export function StepNavigation({
         whileHover={canNext ? { y: -1, boxShadow: '0 6px 20px rgba(45,57,247,0.25)' } : {}}
         whileTap={canNext ? { scale: 0.97 } : {}}
         transition={{ duration: 0.15 }}
-        className="w-full py-3 px-6 rounded-[8px] font-medium text-[18px] text-white disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full py-3 px-6 rounded-[8px] font-medium text-[18px] text-white disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] focus-visible:ring-offset-2"
         style={{ backgroundColor: 'var(--color-primary)' }}
       >
         {nextLabel}

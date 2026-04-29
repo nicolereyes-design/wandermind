@@ -101,7 +101,8 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
               <button
                 type="button"
                 onClick={() => setExpandedDay(expandedDay === day.day ? null : day.day)}
-                className="w-full flex items-center justify-between px-3.5 py-2.5 text-left transition-colors"
+                aria-expanded={expandedDay === day.day}
+                className="w-full flex items-center justify-between px-3.5 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-primary)]"
                 style={{
                   backgroundColor: expandedDay === day.day ? accent.bg : 'white',
                 }}
@@ -116,6 +117,7 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
                   <span className="font-medium text-[14px]">{day.theme}</span>
                 </div>
                 <svg
+                  aria-hidden="true"
                   width="14"
                   height="14"
                   viewBox="0 0 14 14"
@@ -169,16 +171,23 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
 
       {/* Footer CTA */}
       <div className="px-5 pb-5 pt-1">
-        <button
+        <motion.button
           type="button"
-          className="w-full py-2.5 rounded-[8px] font-medium text-[14px] transition-all"
-          style={{
-            backgroundColor: accent.dot,
-            color: 'white',
-          }}
+          className="w-full py-2.5 rounded-[8px] font-medium text-[14px] flex items-center justify-center gap-1.5"
+          style={{ backgroundColor: accent.dot, color: 'white' }}
+          whileHover="hover"
+          initial="rest"
+          animate="rest"
+          whileTap={{ scale: 0.97 }}
         >
-          Choisir cet itinéraire →
-        </button>
+          <span>Choisir cet itinéraire</span>
+          <motion.span
+            variants={{ rest: { x: 0 }, hover: { x: 4 } }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            →
+          </motion.span>
+        </motion.button>
       </div>
     </motion.div>
   )

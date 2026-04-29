@@ -110,9 +110,10 @@ export default function StepLodging() {
           ))}
         </div>
 
-        <h2 className="font-medium text-[18px] mb-3">Destinations souhaitées</h2>
+        <label htmlFor="wishlist-input" className="font-medium text-[18px] mb-3 block">Destinations souhaitées</label>
         <div className="flex gap-2 mb-2">
           <input
+            id="wishlist-input"
             type="text"
             value={wishlistInput}
             onChange={(e) => setWishlistInput(e.target.value)}
@@ -124,6 +125,7 @@ export default function StepLodging() {
           <button
             type="button"
             onClick={addWishlist}
+            aria-label="Ajouter une destination"
             className="px-4 py-2.5 rounded-[8px] text-white font-medium"
             style={{ backgroundColor: 'var(--color-primary)' }}
           >
@@ -146,9 +148,10 @@ export default function StepLodging() {
           </div>
         )}
 
-        <h2 className="font-medium text-[18px] mb-3">Déjà visités (optionnel)</h2>
+        <label htmlFor="visited-input" className="font-medium text-[18px] mb-3 block">Déjà visités <span className="font-normal text-[15px]" style={{ color: 'var(--color-grey-500)' }}>(optionnel)</span></label>
         <div className="flex gap-2 mb-2">
           <input
+            id="visited-input"
             type="text"
             value={visitedInput}
             onChange={(e) => setVisitedInput(e.target.value)}
@@ -160,6 +163,7 @@ export default function StepLodging() {
           <button
             type="button"
             onClick={addVisited}
+            aria-label="Ajouter un pays déjà visité"
             className="px-4 py-2.5 rounded-[8px] text-white font-medium"
             style={{ backgroundColor: 'var(--color-grey-500)' }}
           >

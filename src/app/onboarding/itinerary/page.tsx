@@ -122,22 +122,22 @@ function AccordionDay({ day }: { day: typeof DAYS[0] }) {
         </span>
       </button>
 
-      {open && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.22, ease: 'easeOut' }}
-          style={{ overflow: 'hidden' }}
-        >
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateRows: open ? '1fr' : '0fr',
+          transition: 'grid-template-rows 0.22s ease',
+        }}
+      >
+        <div style={{ minHeight: 0, overflow: 'hidden' }}>
           <p
             className="pb-4 pl-[50px]"
             style={{ fontSize: '14px', color: 'var(--color-grey-500)', lineHeight: '1.6' }}
           >
             {day.activities}
           </p>
-        </motion.div>
-      )}
+        </div>
+      </div>
     </div>
   )
 }
@@ -227,6 +227,7 @@ export default function ItineraryPage() {
               <img
                 src={PHOTOS[0].url}
                 alt={PHOTOS[0].alt}
+                loading="eager"
                 style={{
                   width: '100%',
                   height: '460px',
@@ -248,6 +249,7 @@ export default function ItineraryPage() {
                 <img
                   src={photo.url}
                   alt={photo.alt}
+                  loading="lazy"
                   style={{
                     width: '100%',
                     height: '220px',

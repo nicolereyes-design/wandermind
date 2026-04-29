@@ -34,7 +34,7 @@ export function ProgressBar({ currentStep, totalSteps = 5, onBack }: ProgressBar
         </svg>
       </motion.button>
 
-      <div className="flex items-center gap-2 flex-1" role="progressbar" aria-valuenow={currentStep} aria-valuemax={totalSteps} aria-label={`Étape ${currentStep} sur ${totalSteps}`}>
+      <div className="flex items-center gap-2 flex-1" role="progressbar" aria-valuenow={currentStep} aria-valuemax={totalSteps} aria-label={`Étape ${currentStep} sur ${totalSteps}`} aria-live="polite">
       {Array.from({ length: totalSteps }).map((_, i) => {
         const stepNumber = i + 1
         const isCompleted = stepNumber < currentStep

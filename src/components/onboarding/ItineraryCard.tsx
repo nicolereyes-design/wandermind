@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import type { Itinerary, ActivityType } from '@/types/itinerary'
 
 const ACTIVITY_ICONS: Record<ActivityType, string> = {
@@ -130,39 +130,37 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
                 </svg>
               </button>
 
-              <AnimatePresence>
-                {expandedDay === day.day && (
-                  <motion.div
-                    initial={{ height: 0 }}
-                    animate={{ height: 'auto' }}
-                    exit={{ height: 0 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                    style={{ overflow: 'hidden' }}
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateRows: expandedDay === day.day ? '1fr' : '0fr',
+                  transition: 'grid-template-rows 0.22s ease',
+                }}
+              >
+                <div style={{ minHeight: 0, overflow: 'hidden' }}>
+                  <div
+                    className="px-3.5 pb-3 pt-2 flex flex-col gap-3"
+                    style={{ borderTop: '1px solid var(--color-grey-200)' }}
                   >
-                    <div
-                      className="px-3.5 pb-3 pt-2 flex flex-col gap-3"
-                      style={{ borderTop: '1px solid var(--color-grey-200)' }}
-                    >
-                      {day.activities.map((activity, i) => (
-                        <div key={i} className="flex gap-2.5">
-                          <span className="text-base flex-shrink-0 mt-0.5 leading-none">
-                            {ACTIVITY_ICONS[activity.type]}
-                          </span>
-                          <div className="min-w-0">
-                            <div className="flex items-baseline gap-2 flex-wrap">
-                              <span className="font-medium text-[13px]">{activity.name}</span>
-                              <span className="text-[11px]" style={{ color: 'var(--color-grey-500)' }}>{activity.time}</span>
-                            </div>
-                            <p className="text-[12px] mt-0.5 leading-relaxed" style={{ color: 'var(--color-grey-500)' }}>
-                              {activity.description}
-                            </p>
+                    {day.activities.map((activity, i) => (
+                      <div key={i} className="flex gap-2.5">
+                        <span className="text-base flex-shrink-0 mt-0.5 leading-none">
+                          {ACTIVITY_ICONS[activity.type]}
+                        </span>
+                        <div className="min-w-0">
+                          <div className="flex items-baseline gap-2 flex-wrap">
+                            <span className="font-medium text-[13px]">{activity.name}</span>
+                            <span className="text-[11px]" style={{ color: 'var(--color-grey-500)' }}>{activity.time}</span>
                           </div>
+                          <p className="text-[12px] mt-0.5 leading-relaxed" style={{ color: 'var(--color-grey-500)' }}>
+                            {activity.description}
+                          </p>
                         </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>

@@ -124,7 +124,9 @@ export default function SignupPage() {
           </div>
 
           {/* Email input */}
+          <label htmlFor="email-input" className="sr-only">Adresse email</label>
           <input
+            id="email-input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

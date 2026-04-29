@@ -42,8 +42,8 @@ export default function OnboardingIntroPage() {
           </div>
 
           <h1
-            className="font-bold leading-tight mb-4"
-            style={{ fontSize: 'clamp(36px, 8vw, 56px)' }}
+            className="font-bold mb-4"
+            style={{ fontSize: 'clamp(36px, 8vw, 56px)', lineHeight: 'var(--leading-tight)', letterSpacing: '-0.025em' }}
           >
             Vos voyages de{' '}
             <ShimmerText

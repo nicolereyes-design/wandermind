@@ -44,7 +44,7 @@ export default function StepInterests() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
-        <h1 className="font-bold mb-2" style={{ fontSize: '32px' }}>
+        <h1 className="font-bold mb-2" style={{ fontSize: '32px', lineHeight: 'var(--leading-snug)', letterSpacing: '-0.015em' }}>
           Qu&apos;est-ce qui vous passionne ?
         </h1>
         <p className="mb-8" style={{ fontSize: '18px', color: 'var(--color-grey-500)' }}>

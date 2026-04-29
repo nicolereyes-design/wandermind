@@ -56,7 +56,7 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
           </div>
         </div>
 
-        <h3 className="font-bold leading-tight" style={{ fontSize: '18px', color: '#0a0a0a' }}>
+        <h3 className="font-bold" style={{ fontSize: '20px', lineHeight: 'var(--leading-snug)', letterSpacing: '-0.01em', color: 'var(--color-ink)' }}>
           {itinerary.title}
         </h3>
       </div>
@@ -153,7 +153,7 @@ export function ItineraryCard({ itinerary, index }: ItineraryCardProps) {
                             <span className="font-medium text-[13px]">{activity.name}</span>
                             <span className="text-[11px]" style={{ color: 'var(--color-grey-500)' }}>{activity.time}</span>
                           </div>
-                          <p className="text-[12px] mt-0.5 leading-relaxed" style={{ color: 'var(--color-grey-500)' }}>
+                          <p className="text-[13px] mt-0.5 leading-relaxed" style={{ color: 'var(--color-grey-500)' }}>
                             {activity.description}
                           </p>
                         </div>

@@ -75,8 +75,8 @@ export default function ResultsPage() {
           </motion.div>
 
           <h1
-            className="font-bold mb-4 leading-tight"
-            style={{ fontSize: 'clamp(36px, 6vw, 56px)' }}
+            className="font-bold mb-4"
+            style={{ fontSize: 'clamp(36px, 6vw, 56px)', lineHeight: 'var(--leading-tight)', letterSpacing: '-0.025em' }}
           >
             Vos voyages de{' '}
             <ShimmerText color="rgba(45,57,247,0.35)" duration={3.5} delay={0.5} style={{ color: 'var(--color-primary)' }}>rêve</ShimmerText>

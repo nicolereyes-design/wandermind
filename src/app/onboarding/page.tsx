@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { Logo } from '@/components/shared/Logo'
 import { useOnboardingStore } from '@/store/onboardingStore'
 import { ShimmerText } from '@/components/ui/ShimmerText'
+import { FlightMap } from '@/components/ui/FlightMap'
 
 export default function OnboardingIntroPage() {
   const router = useRouter()
@@ -22,13 +23,26 @@ export default function OnboardingIntroPage() {
   }, [updateProfile, reset])
 
   return (
-    <div className="min-h-screen bg-white flex flex-col" style={{ position: 'relative' }}>
+    <div className="min-h-screen bg-white flex flex-col" style={{ position: 'relative', overflow: 'hidden' }}>
 
-      <header className="px-4 py-4 max-w-[640px] mx-auto w-full">
+      {/* Animated flight routes — decorative background */}
+      <FlightMap
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+          maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
+        }}
+      />
+
+      <header className="px-4 py-4 max-w-[640px] mx-auto w-full" style={{ position: 'relative', zIndex: 1 }}>
         <Logo />
       </header>
 
-      <main className="flex-1 flex flex-col justify-center px-4 pb-16 max-w-[640px] mx-auto w-full">
+      <main className="flex-1 flex flex-col justify-center px-4 pb-16 max-w-[640px] mx-auto w-full" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

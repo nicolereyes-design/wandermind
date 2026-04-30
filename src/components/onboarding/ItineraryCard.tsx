@@ -77,6 +77,7 @@ export function ItineraryCard({ itinerary, index, onSelect }: ItineraryCardProps
       onMouseLeave={handleMouseLeave}
       style={{
         position: 'relative',
+        height: '100%',
         zIndex: isHovered ? 2 : undefined,
         perspective: 1200,
         rotateX: reducedMotion ? 0 : springRotateX,
@@ -88,7 +89,7 @@ export function ItineraryCard({ itinerary, index, onSelect }: ItineraryCardProps
         initial={{ opacity: 0, y: 48, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.3 + index * 0.18, ease: [0.22, 1, 0.36, 1] }}
-        className="rounded-[16px] flex flex-col bg-white overflow-hidden"
+        className="rounded-[16px] flex flex-col bg-white overflow-hidden h-full"
         style={{
           border: '1.5px solid var(--color-grey-200)',
           boxShadow: isHovered
